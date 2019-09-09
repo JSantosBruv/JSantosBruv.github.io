@@ -1,66 +1,109 @@
-/* Custom Stylesheet */
-/**
- * Use this file to override Materialize files so you can update
- * the core Materialize files in the future
- *
- * Made By MaterializeCSS.com
- */
+.squareL {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  position: relative;
+  float:left;
+  
+  animation-name: squareMovL;
+  animation-duration: 8s;
+  animation-fill-mode: forwards;
+ 
+}
+.squareR {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  position: relative;
+  float:right;
 
-nav ul a,
-nav .brand-logo {
-  color: #444;
-
+  animation-name: squareMovR;
+  animation-duration: 8s;
+  animation-fill-mode: forwards;
+ 
 }
 
-p {
-  line-height: 2rem;
-}
+.mid {
+  width: 100vw;
+  height: 10px;
+  background-color: red;
+  position: relative;
+  top:50vh;
 
-.sidenav-trigger {
-  color: #26a69a;
-}
+  animation-name: touchbar;
+  animation-duration: 8s;
+  animation-fill-mode: forwards;
 
-.parallax-container {
-  min-height: 380px;
-  line-height: 0;
-  height: auto;
-  color: rgba(255,255,255,.9);
 }
-  .parallax-container .section {
-    width: 100%;
+.text {
+  width: 100vw;
+  position: relative;
+  color: white;
+  top:100px;
+  text-align: center;
+  font-size: 4em;
+
+  animation-name: a;
+  animation-duration: 8s;
+  animation-fill-mode: forwards;
+
+}
+@keyframes squareMovL {
+  0% {
+    background-color: red;
+    top:0vh;
+    left:0vw;
   }
-
-@media only screen and (max-width : 992px) {
-  .parallax-container .section {
-    position: absolute;
-    top: 40%;
+  50% {
+    background-color: yellow;
+    top:50vh;
+    left:0vw;
   }
-  #index-banner .section {
-    top: 10%;
-  }
-}
-
-@media only screen and (max-width : 600px) {
-  #index-banner .section {
-    top: 0;
+  100% {
+    background-color: pink;
+    left:47.5vw;
+    top:50vh;
   }
 }
 
-.icon-block {
-  padding: 0 15px;
+@keyframes squareMovR {
+  0% {
+    background-color: red;
+    top:0vh;
+    right:0vw;
+  }
+  50% {
+    background-color: yellow;
+    top:50vh;
+    right:0vw;
+  }
+  100% {
+    background-color: pink;
+    right:47.5vw;
+    top:50vh;
+  }
 }
-.icon-block .material-icons {
-  font-size: inherit;
+
+@keyframes touchbar {
+  20% {
+    background-color: red;
+  }
+  40% {
+    background-color:yellow;
+  }
+  80% {
+    background-color: yellow;
+  }
+  100% {
+    background-color: pink;
+  }
 }
-
-footer.page-footer {
-  margin: 0;
+@keyframes a {
+  90% {
+    color:white;
+  }
+ 
+   100% {
+    color: pink;
+  }
 }
-
-nav ul li:hover {
-   background-color: grey;
-   transition-duration: 1s, 1s;
-}
-
-
-
