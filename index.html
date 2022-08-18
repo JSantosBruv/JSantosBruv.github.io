@@ -9,12 +9,7 @@
 		<div >
 		<h1>GME: <b id="GME"></b></h1>
 		<h1>AMC: <b id="AMC"></b></h1>
-	</div>
-
-	<div style="margin-top: 5em;">
-		<h1>AMC Profit: &nbsp;<b id="AMCtotal" style="color:yellow"></b> for <b id="AMCper" style="color:yellow"></b> gain.</h1>
-		<h1>GME Profit: &nbsp;<b id="GMEtotal" style="color:yellow"></b> for <b id="GMEper" style="color:yellow"></b> gain.</h1>
-		<h1>Total Profit: <b id="profit"></b></h1>
+		<h1>AMC: <b id="BBBY"></b></h1>
 	</div>
 	</div>
 	
@@ -30,7 +25,7 @@
 	socket.addEventListener('open', function (event) {
 	    socket.send(JSON.stringify({'type':'subscribe', 'symbol': 'GME'}))
 	    socket.send(JSON.stringify({'type':'subscribe', 'symbol': 'AMC'}))
-	  
+	    socket.send(JSON.stringify({'type':'subscribe', 'symbol': 'BBBY'}))
 	});
 
 	// Listen for messages
@@ -51,47 +46,6 @@
 			color = "green";
 
 		document.getElementById(ticker).style.color=color;
-
-		lastValue[ticker] = value;
-
-		if(ticker == "GME"){
-			var centoit = ((lastValue["GME"]  * 29.68)/182.76);
-			var centsess = ((lastValue["GME"] *(35.92-1.18))/161.48);
-			var centoitPer = ((lastValue["GME"] *100)/182.76)-100;
-			var centsessPer = ((lastValue["GME"] *100)/161.48)-100;
-
-
-			lastValue["PROFITGME"] =  Math.round(centoit + centsess -1.18,2);
-			lastValue["PERGME"] =  Math.round((centsessPer+centoitPer)/2,2);
-		
-		}
-		else{
-			var doze = ((lastValue["AMC"] * 60.99)/12.2);
-			var quarenta = ((lastValue["AMC"] *(130.18-1.21))/47.3);
-			var dozePer = ((lastValue["AMC"] *100)/12.2)-100;
-			var quarentaPer = ((lastValue["AMC"] *100)/47.3)-100;
-
-			lastValue["PROFITAMC"] =  Math.round(doze + quarenta -1.21,2);
-			lastValue["PERAMC"] =  Math.round((dozePer + quarentaPer) /2,2);
-		}
-		
-
-		var total = lastValue["PROFITGME"]  + lastValue["PROFITAMC"] + "$";
-
-
-		document.getElementById(ticker+"total").innerHTML =lastValue["PROFIT"+ticker] +"$";
-		document.getElementById(ticker+"per").innerHTML =lastValue["PER"+ticker]  +"%";
-
-		document.getElementById("profit").innerHTML =total;
-
-		var profitColor= "red";
-
-		if(total > lastValue["PROFIT"])
-			profitColor = "green";
-
-		document.getElementById("profit").style.color=profitColor;
-
-		lastValue["PROFIT"] = total;
 
 	   }
 	});
